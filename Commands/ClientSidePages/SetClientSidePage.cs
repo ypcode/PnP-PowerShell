@@ -19,6 +19,9 @@ namespace SharePointPnP.PowerShell.Commands.ClientSidePages
         [Parameter(Mandatory = true, ValueFromPipeline = true, Position = 0, HelpMessage = "The name/identity of the page")]
         public ClientSidePagePipeBind Identity;
 
+        [Parameter(Mandatory = false, HelpMessage = "Specifies the title of the page.")]
+        public string Title = null;
+
         [Parameter(Mandatory = false, HelpMessage = "Sets the name of the page.")]
         public string Name = null;
 
@@ -50,6 +53,11 @@ namespace SharePointPnP.PowerShell.Commands.ClientSidePages
             string name = ClientSidePageUtilities.EnsureCorrectPageName(Name ?? Identity?.Name);
             if (name == null)
                 throw new Exception("Insufficient arguments to add a client side page");
+
+            if (!string.IsNullOrEmpty(Title))
+            {
+                clientSidePage.PageTitle = Title;
+            }
 
             clientSidePage.LayoutType = LayoutType;
             clientSidePage.Save(name);

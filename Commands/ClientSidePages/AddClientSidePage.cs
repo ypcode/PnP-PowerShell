@@ -19,6 +19,9 @@ namespace SharePointPnP.PowerShell.Commands.ClientSidePages
         [Parameter(Mandatory = true, HelpMessage = "Specifies the name of the page.")]
         public string Name = null;
 
+        [Parameter(Mandatory = false, HelpMessage = "Specifies the title of the page.")]
+        public string Title = null;
+
         [Parameter(Mandatory = false, HelpMessage = "Specifies the layout type of the page.")]
         public ClientSidePageLayoutType LayoutType = ClientSidePageLayoutType.Article;
 
@@ -58,6 +61,10 @@ namespace SharePointPnP.PowerShell.Commands.ClientSidePages
 
             // Create a page that persists immediately
             clientSidePage = SelectedWeb.AddClientSidePage(name);
+            if (!string.IsNullOrEmpty(Title))
+            {
+                clientSidePage.PageTitle = Title;
+            }
             clientSidePage.LayoutType = LayoutType;
             clientSidePage.Save(name);
 

@@ -4,6 +4,7 @@ Adds a Client-Side Page
 ## Syntax
 ```powershell
 Add-PnPClientSidePage -Name <String>
+                      [-Title <String>]
                       [-LayoutType <ClientSidePageLayoutType>]
                       [-PromoteAs <ClientSidePagePromoteType>]
                       [-CommentsEnabled <Nullable`1>]
@@ -22,6 +23,7 @@ Parameter|Type|Required|Description
 |PromoteAs|ClientSidePagePromoteType|False|Allows to promote the page for a specific purpose (HomePage | NewsPage)|
 |Publish|SwitchParameter|False|Publishes the page once it is saved. Applicable to libraries set to create major and minor versions.|
 |PublishMessage|String|False|Sets the message for publishing the page.|
+|Title|String|False|Specifies the title of the page.|
 |Web|WebPipeBind|False|The web to apply the command to. Omit this parameter to use the current web.|
 ## Examples
 
